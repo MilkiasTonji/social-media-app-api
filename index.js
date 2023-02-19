@@ -16,6 +16,11 @@ import userRoutes from './routes/users.js';
 import postRoutes from './routes/posts.js';
 import { verifyToken } from './middleware/auth.js';
 
+import User from './models/User.js';
+import Post from './models/Post.js';
+import {users, posts} from './data/index.js'
+
+
 /*  CONFIGURATIONS   */
 
 const __filename = fileURLToPath(import.meta.url);
@@ -63,6 +68,11 @@ mongoose.connect(process.env.MONGO_URL, {
     useUnifiedTopology: true
 }).then(() => {
     app.listen(PORT, ()=> console.log(`Server Port: ${PORT}`))
+    // INSERT DATA ONE TIME
+    // User.insertMany(users);
+    // Post.insertMany(posts).then(()=> {
+    //     console.log("Posts inserted..")
+    // })
 }).catch((error) => {
     console.log(`MongoDB connection Error: ${error}`);
 })
