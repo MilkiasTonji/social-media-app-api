@@ -48,11 +48,10 @@ const storage = multer.diskStorage({
 const upload = multer({storage})
 
 // ROUTE WITH FILES
-app.post('/auth/register', upload.single('picturePath'), register);
+app.post('/auth/register',register);
 app.post('/posts', verifyToken, upload.single('picturePath', createPost))
 
 // ROUTES
-
 app.use('/auth', authRoutes)
 app.use('/users', userRoutes)
 app.use('/posts', postRoutes)
@@ -60,10 +59,11 @@ app.use('/posts', postRoutes)
 
 /* MONGGOSE SETUP */
 
-const PORT = process.env.PORT || 30001
+const PORT = process.env.PORT || 3001
+const MONGO_URL = process.env.MONGO_URL || 'mongodb://localhost:27017/socialmediadb'
 
 mongoose.set('strictQuery', false)
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => {

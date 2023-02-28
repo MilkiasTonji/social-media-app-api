@@ -8,17 +8,9 @@ import User from "../models/User.js";
 
 export const register = async (req, res) => {
   try {
-    const {
-      firstName,
-      lastName,
-      email,
-      password,
-      friends,
-      location,
-      occupation,
-    } = req.body;
+    const {firstName,lastName,email,password,friends,location,occupation,picturePath} = req.body;
 
-    const { filename } = req.file;
+    // const { filename } = req.file;
 
     // CHECK EMAIL
 
@@ -33,7 +25,7 @@ export const register = async (req, res) => {
       lastName,
       email,
       password: passwordHash,
-      picturePath: filename,
+      picturePath,
       friends,
       location,
       occupation,
