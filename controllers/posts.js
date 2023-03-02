@@ -21,7 +21,7 @@ export const createPost = async (req, res) => {
       comments: [],
     });
     await newPost.save();
-    const post = await Post.find();
+    const post = await Post.find({});
     // status code 202 is when something is created
     res.status(201).json(post);
   } catch (error) {
